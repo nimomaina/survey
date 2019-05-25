@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block content %}
+
+<div class="w3-container">
+    <div class="container">
+        <h1>Welcome to Doctors Survey</h1>
+        <p>We are pleased to invite you in a 5-minute Health Survey.
+            Our Patient Health Survey include general and non-invasive questions about your health and habits.
+            Answering to all our questions will help us implement the best functional health improvement programs.</p>
+        <div class="w3-row-padding">
+            {% for d in data %}
+            <div class="panel panel-default">
+                <div class="panel-heading">{{d.text}}</div>
+                {% for o in d.options %}
+                <div class="panel-body">{{o.text}}
+                    </div>
+                {% endfor %}
+                <div class="panel-footer">Next</div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}
