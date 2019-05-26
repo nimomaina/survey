@@ -10,16 +10,49 @@
             Our Patient Health Survey include general and non-invasive questions about your health and habits.
             Answering to all our questions will help us implement the best functional health improvement programs.</p>
         <div class="w3-row-padding">
-            {% for d in data %}
-            <div class="panel panel-default">
-                <div class="panel-heading">{{d.text}}</div>
-                {% for o in d.options %}
-                <div class="panel-body">{{o.text}}
-                    </div>
+
+
+            <form action="myurl" method="POST" name="myForm">
+
+                {% for d in data %}
+                <div class="form-group">
+                    <label for="first_name">{{ d.text }}</label>
+                    <br>
+                    {% if d.type == "question-number"%}
+                    <input type="number">
+                    <br>
+
+                    {% elif d.type == "question-100-breakdown"%}
+                    {% for o in d.options%}
+                    <input type="radio" name="first_name" id="fname">{{o.text}}</p>
+                    {% endfor %}
+
+
+                    {% elif d.type == "question-percent"%}
+                    <input type="number" min="1" max="100" id="fname"></p>
+                    {% elif d.type == "question-arrange-options"%}
+                    <section>
+                        <ul>
+                            {% for o in d.options%}
+                            <ul>
+                                <li draggable="true" ondragend="dragEnd()" ondragover="dragOver(event)"
+                                    ondragstart="dragStart(event)">{{o.text}}</li>
+
+                            </ul>
+
+
+                            {% endfor %}
+
+
+                        </ul>
+                    </section>
+                    {% endif %}
+
+                </div>
                 {% endfor %}
-                <div class="panel-footer">Next</div>
-            </div>
-            {% endfor %}
+                <input value="Submit" type="submit" onclick="submitform()">
+
+            </form>
 
         </div>
 
