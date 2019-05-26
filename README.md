@@ -1,48 +1,38 @@
-#### SURVEY QUESTIONNAIRE FOR ENDOCRINOLOGISTS
-------------------------------------------
+# SURVEY
+An application that feeds local JSON data and decodes to create a survey questionnaire which is filled and the answers are displayed as JSON object
 
-Here we have a JSON file consisting of an array of objects.
 
-- The main parameters consist of:
-	 1. "key" - the name attribute
-     2. "text" - the label of the input field
-	 3. "type" - the question type
+## Specifications
+* The application can loop through the JSON data
+* Each question type is displayed for example for questions that require an input of sortable lists is displayed
+* On submission the JSON data is displayed on the brower at the bottom og the page
 
-- Meaning to the "type" parameters are: 
-	1. "question-number" - type number
-	2. "question-100-breakdown" - breakdown the options to different fields and their values should add up to 100
-	3. "question-percent" - type percentage
-	4. "question-group" - group of questions under the same question.
-	5. "question-arrange-options" - drag and drop question.
 
--------------------------------------------------------------------------------------------------------------------
+## Technologies Used
+* Python
+* Javascript
+* HTML
+* Bootstrap
+* Django
 
-### TASK LEVELS
+## Application link
+https://nimo-survey.herokuapp.com/
 
- 1. Create an application that can be fed with this JSON and populate a survey.
- 
- 2. Ensure the doctors fill in the questions before proceeding to the next question.
- 
- 3. On completing the survey, log a JSON object of the answers filled in by the doctor to the browser.
+## Prerequisites
+* Python 3.6 required
+* Postgresql
 
-Here's an example of a JSON structure to be logged on the browser:
-```
-{
-	"years-in-practice": 6,
-	"next-100-patient-breakdown": {
-		"t1dm": 30,
-		"t2dm": 40,
-		"none": 30
-	},
-	"percent-t2dm-managed-by-other-doc-before": 23,
-	"primary-reason-for-transfer-of-care": ["uncontrolled-diabetes", "complex-diabetes", "reduced-medical-liability", "patient-request"],
-	"t2dm-complications": {
-		"retinopathy": 34,
-		"nephropathy": 23,
-		"cerebrovascular-disease": 41,
-		"cad": 22,
-		"peripheral-arterial-occlusive-disease": 55
-	}
-    ```
-	...
-}
+## Setup/Installation Requirements
+Follow the following commands to run the project
+* git clone/download ```https://github.com/nimomaina/survey.git```
+* cd survey
+* Install required files in requirements.txt
+* Run ```python3.6 manage.py runserver```
+
+
+]
+## Support and contact details
+In case of clarification email me at nimomaina.nm@gmail.com
+
+### License
+Copyright (c) 2019 **Wairimu Maina**
