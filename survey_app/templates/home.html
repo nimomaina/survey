@@ -3,57 +3,75 @@
 
 {% block content %}
 
-<div class="w3-container">
+<div class="jumbotron">
     <div class="container">
         <h1>Welcome to Doctors Survey</h1>
         <p>We are pleased to invite you in a 5-minute Health Survey.
             Our Patient Health Survey include general and non-invasive questions about your health and habits.
             Answering to all our questions will help us implement the best functional health improvement programs.</p>
-        <div class="w3-row-padding">
+        <div class="container">
 
 
-            <form action="myurl" method="POST" name="myForm">
-
+            <form action="" method="post" id="test" name="myForm" onsubmit="return validate();">
+                {% csrf_token %}
                 {% for d in data %}
                 <div class="form-group">
-                    <label for="first_name">{{ d.text }}</label>
-                    <br>
-                    {% if d.type == "question-number"%}
-                    <input type="number">
-                    <br>
-
-                    {% elif d.type == "question-100-breakdown"%}
-                    {% for o in d.options%}
-                    <input type="radio" name="first_name" id="fname">{{o.text}}</p>
-                    {% endfor %}
 
 
-                    {% elif d.type == "question-percent"%}
-                    <input type="number" min="1" max="100" id="fname"></p>
-                    {% elif d.type == "question-arrange-options"%}
-                    <section>
-                        <ul>
+                    <div class="panel panel-info" id="question{{forloop.counter}}">
+                        <div class="panel-heading"><label for="first_name">Question
+                                {{forloop.counter}}<br>{{ d.text }}</label></div>
+                        <br>
+                        <div class="panel-body">
+                            {% if d.type == "question-100-breakdown"%}
                             {% for o in d.options%}
-                            <ul>
-                                <li draggable="true" ondragend="dragEnd()" ondragover="dragOver(event)"
-                                    ondragstart="dragStart(event)">{{o.text}}</li>
+                            <label> {{o.text}} </label>
+                            <input class="w3-input" type="number" id="{{d.key}}" required="required"
+                                name="Number{{forloop.counter}}">
+                            <br>
+                            {% endfor %}
+                            {% elif d.type == "question-number"%}
+                            <input class="w3-input" type="number" required="required" id="{{d.key}}">
+                            <br>
+                            {% elif d.type == "question-percent"%}
+                            <input class="w3-input" type="number" required="required" min="1" max="100" id="{{d.key}}">
+                            {% elif d.type == "question-arrange-options"%}
+                            <section>
+                                <ul>
+                                    {% for o in d.options%}
+                                    <ul>
+                                        <li id="{{d.key}}" draggable="true" ondragend="dragEnd()"
+                                            ondragover="dragOver(event)" ondragstart="dragStart(event)">{{o.text}}</li>
 
-                            </ul>
+                                    </ul>
 
+                                    {% endfor %}
+
+                                </ul>
+                            </section>
+                            {% elif d.type == "question_group"%}
+                            {% for q in d.questions%}
+
+                            <label>{{ q.text }}</label>
+                            <br>
+                            <input class="w3-input" id="{{d.key}}" required="required" min="1" max="100" type="number">
+                            <br>
 
                             {% endfor %}
 
+                            {% endif %}
+                        </div>
 
-                        </ul>
-                    </section>
-                    {% endif %}
-
+                    </div>
                 </div>
                 {% endfor %}
-                <input value="Submit" type="submit" onclick="submitform()">
 
-            </form>
+                <input type="submit" value="submit">
 
+                <form>
+                    <div>
+                        <pre id="output" <pre>
+            </div>
         </div>
 
     </div>

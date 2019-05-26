@@ -4,7 +4,10 @@ body {
 
 li {
   cursor: pointer;
-  user-select: none
+  user-select: none;
+  border: 2px solid gray;
+  margin: 5px;
+  padding:10px;
 }
 
 .more {
@@ -17,3 +20,4 @@ li {
 .more a {
   color: rgb(96, 96, 96)
 }
+
